@@ -20,14 +20,16 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@hacksu'
       - name: Download FontAwesome Pro
-        run: |
-          cd packages/fontawesome
-          FONTAWESOME_NPM_AUTH_TOKEN=${{ secrets.FONTAWESOME_TOKEN }} npm run pull
+        working-directory: packages/fontawesome
+        run: FONTAWESOME_NPM_AUTH_TOKEN=${{ secrets.FONTAWESOME_TOKEN }} npm run pull
       - name: Extract Package
+        working-directory: packages/fontawesome
         run: npm run unzip
       - name: Rename Package with HacKSU Scope
-        run: npm run rename && cd package
+        working-directory: packages/fontawesome
+        run: npm run rename
       - name: Publish
+        working-directory: packages/fontawesome/package
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
