@@ -21,7 +21,9 @@ jobs:
           scope: '@hacksu'
           cache: 'npm'
       - name: Download FontAwesome Pro
-        run: cd packages/fontawesome && npm run pull
+        run: |
+          cd packages/fontawesome
+          FONTAWESOME_NPM_AUTH_TOKEN=${{ secrets.FONTAWESOME_TOKEN }} npm run pull
       - name: Extract Package
         run: npm run unzip
       - name: Rename Package with HacKSU Scope
