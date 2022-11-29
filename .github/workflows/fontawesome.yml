@@ -1,0 +1,32 @@
+name: FontAwesome Pro
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Pull & Publish
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@hacksu'
+          cache: 'npm'
+      - name: Download FontAwesome Pro
+        run: cd packages/fontawesome && npm run pull
+      - name: Extract Package
+        run: npm run unzip
+      - name: Rename Package with HacKSU Scope
+        run: npm run rename && cd package
+      - name: Publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

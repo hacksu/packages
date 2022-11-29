@@ -1,0 +1,14 @@
+{
+  "name": "@hacksu/fontawesome",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pull": "rm -rf package; npm pack @fortawesome/fontawesome-pro",
+    "unzip": "gunzip -c fortawesome-*.tgz | tar xf -",
+    "rename": "rm -rf fortawsesome-*.tgz && node rename.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
