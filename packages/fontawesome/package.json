@@ -6,7 +6,7 @@
   "scripts": {
     "pull": "rm -rf package; npm pack @fortawesome/fontawesome-pro",
     "unzip": "gunzip -c fortawesome-*.tgz | tar xf -",
-    "rename": "rm -rf fortawsesome-*.tgz && node rename.js"
+    "rename": "rm -rf fortawsesome-*.tgz && node rename.js && cp README.md ./package/README.md"
   },
   "keywords": [],
   "author": "",
