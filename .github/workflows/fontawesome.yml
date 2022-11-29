@@ -19,7 +19,6 @@ jobs:
           node-version: 16.x
           registry-url: 'https://registry.npmjs.org'
           scope: '@hacksu'
-          cache: 'npm'
       - name: Download FontAwesome Pro
         run: |
           cd packages/fontawesome
